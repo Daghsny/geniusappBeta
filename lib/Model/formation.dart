@@ -1,4 +1,7 @@
-const List<Map<String, dynamic>> formations = [
+
+
+const List<Map<String, dynamic>> formations = 
+[
   {
     "slug": "assets/holi.png",
     "title": "letter",

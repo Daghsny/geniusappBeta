@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:geniusapp/Doc/pdf_page.dart';
 import 'package:geniusapp/Doc/tab_mat_doc.dart';
@@ -186,7 +187,7 @@ class Profile extends StatelessWidget {
                           onPressed: () {
                             Get.to(TableMatDocScreen());
                           },
-                        )
+                        ),
                       ],
                     ),
                   ),

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:geniusapp/Doc/one_lesson_doc_screen.dart';
 import 'package:geniusapp/Doc/pdf_page.dart';
 import 'package:geniusapp/Services/colors.dart';
-import 'package:geniusapp/VOD/OneLessonScreen/one_lesson.dart';
+import 'package:geniusapp/VOD/LessonScreen/View/lesson_screen.dart';
 
 class LessonsDocScreen extends StatelessWidget {
   final Map<String, dynamic> module;

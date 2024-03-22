@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:geniusapp/Controller/level_controller.dart';
+import 'package:geniusapp/HomeScreen/ShimmerWidget/my_ads_shimmer.dart';
+import 'package:geniusapp/HomeScreen/ShimmerWidget/my_teacher_shimmer.dart';
+import 'package:geniusapp/HomeScreen/ShimmerWidget/my_topics_shimmed.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/Advertise/ads.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/Drawer/my_drawer.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/LastCorses/my_last_corses.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/LifeSkills/life_skils.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/SearchPage/search_page.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/TeacherList/my_teacher_list.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/TopAppBar/my_top_bar.dart';
+// import 'package:geniusapp/Controller/level_controller.dart';
+// import 'package:geniusapp/HomeScreen/ShimmerWidget/my_ads_shimmer.dart';
+// import 'package:geniusapp/HomeScreen/ShimmerWidget/my_teacher_shimmer.dart';
+// import 'package:geniusapp/HomeScreen/ShimmerWidget/my_topics_shimmed.dart';
+// import 'package:geniusapp/HomeScreen/WidegetSection/Advertise/ads.dart';
+// import 'package:geniusapp/HomeScreen/WidegetSection/Drawer/my_drawer.dart';
+// import 'package:geniusapp/HomeScreen/WidegetSection/LastCorses/my_last_corses.dart';
+// import 'package:geniusapp/HomeScreen/WidegetSection/LifeSkills/life_skils.dart';
+// import 'package:geniusapp/HomeScreen/WidegetSection/SearchPage/search_page.dart';
+// import 'package:geniusapp/HomeScreen/WidegetSection/TeacherList/my_teacher_list.dart';
+// import 'package:geniusapp/HomeScreen/WidegetSection/TopAppBar/my_top_bar.dart';
+import 'package:geniusapp/HomeScreen/WidegetSection/Topics/topics_ads.dart';
+
 import 'package:get/get.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/life_skils.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/my_drawer.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/my_last_corses.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/my_teacher_list.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/my_top_bar.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/topics_ads.dart';
-import 'package:geniusapp/HomeScreen/search_page.dart';
+
+
 
 import 'package:geniusapp/Model/article.dart';
-import 'package:geniusapp/Model/teacher.dart';
 import 'package:geniusapp/Services/colors.dart';
 
 class MyHomeScreen extends StatelessWidget {
@@ -18,6 +36,8 @@ class MyHomeScreen extends StatelessWidget {
   final Article article = Article.articles[0];
   final PageController controller = PageController();
   final List<Article> articles;
+  final LevelController levelController = Get.put(LevelController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,10 +144,21 @@ class MyHomeScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             MyTopBar(article: article),
-            MyTpicsADS(),
-            MyLastCorses(articles: Article.articles),
+            Obx(
+              () => levelController.isLoadingTeacher.value
+                  ? const MyTeacherShimmer()
+                  : TeachersList(teachers: levelController.teachersList),
+            ),
+            Obx(() => levelController.isLoadingTeacher.value
+                ? const MyTopicsShimmed()
+                : MyTpicsADS()),
+            Obx(
+              () => levelController.isLoadingAdvertise.value
+                  ? const ShimmerAdvertiseScreen()
+                  : AdvertiseScreen(adsList: levelController.advertiseList,),
+            ),
+            MyLastCorses(lessons: levelController.lessonsList),
             const MyLifeSkils(),
-            TeachersList(teachers: Teacher.teachers),
           ],
         ),
       ),

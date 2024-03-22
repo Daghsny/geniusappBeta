@@ -1,9 +1,10 @@
+// ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/my_images_container.dart';
+import 'package:geniusapp/Model/level.dart';
 import 'package:geniusapp/Model/teacher.dart';
+import 'package:geniusapp/RemoteServices/remote_services.dart';
 import 'package:geniusapp/Services/colors.dart';
-
 
 class TeachersList extends StatelessWidget {
   const TeachersList({
@@ -37,36 +38,40 @@ class TeachersList extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 300,
+            height: 150,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: teachers.length,
               itemBuilder: (context, index) {
                 return Container(
-                  //color: Colors.amberAccent.shade100,
-                  // width: MediaQuery.of(context).size.width * 0.5,
+              
                   margin: const EdgeInsets.only(right: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          border: Border.all(
-                            color: kColors15,
-                            width: 3,
+                      SizedBox(
+                        height: 120,
+                        width: 120,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(
+                              color: kColors15,
+                              width: 3,
+                            ),
+                          ),
+                          child: Image.network(
+                            '${RemoteServices.baseUrl}${teachers[index].avatar.url}',
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        child: ImageContainer(
-                          widht: MediaQuery.of(context).size.width * 0.3,
-                          imgUrl: teachers[index].imageUrl,
-                        ),
                       ),
+                      
                       const SizedBox(
                         height: 8,
                       ),
                       Text(
-                        teachers[index].author,
+                        '${teachers[index].lastName.toUpperCase()} ${teachers[index].firstName}',
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!

@@ -38,6 +38,8 @@ dependencies:
   google_nav_bar: ^5.0.6
   http: ^1.1.0
   smooth_page_indicator: ^1.1.0
+  chewie: ^1.7.5
+  
   
   flutter_onboarding_slider: ^1.0.10
   animate_do: ^3.1.2

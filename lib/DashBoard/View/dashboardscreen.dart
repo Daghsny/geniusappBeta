@@ -9,7 +9,7 @@ import 'package:geniusapp/Model/article.dart';
 import 'package:geniusapp/ProfilScreen/profile.dart';
 import 'package:geniusapp/Services/colors.dart';
 import 'package:geniusapp/Shop/shops_screen.dart';
-import 'package:geniusapp/VOD/TableOfMater/table_maters_screen.dart';
+import 'package:geniusapp/VOD/TableOf_Field/fields_table_screen.dart';
 
 class DashboardPage extends StatelessWidget {
   DashboardPage({super.key});

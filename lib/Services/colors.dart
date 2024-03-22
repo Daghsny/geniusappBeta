@@ -22,6 +22,8 @@ const kTextLightColor = Color(0xFF747474);
 
 //const kMyGreyColor = Color(0xFFF0ECDC);
 const kMyGreyColor = Color(0xFFEAE9DD);
+const kMyGreyColorWhite = Color.fromARGB(255, 233, 232, 224);
+
 const kMybACKGreyColor = Color(0xFFF3F0E7);
 const kMyDarckColor = Color(0xFF121213);
 
@@ -30,3 +32,4 @@ const kColors12 = Color(0xFF135679);
 const kColors13 = Color(0xFF35c0e8);
 const kColors14 = Color(0xFFe0e5dc);
 const kColors15 = Color(0xFFe1f706);
+const kColors16 = Color(0xFF747474);

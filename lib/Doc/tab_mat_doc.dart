@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/my_images_container.dart';
 import 'package:geniusapp/Doc/lessons_doc_screen.dart';
 import 'package:geniusapp/Model/article.dart';
 import 'package:geniusapp/Services/colors.dart';

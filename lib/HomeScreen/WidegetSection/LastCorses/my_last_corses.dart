@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:geniusapp/Model/article.dart';
+import 'package:geniusapp/Model/lesson.dart';
+import 'package:geniusapp/RemoteServices/remote_services.dart';
 import 'package:geniusapp/Services/colors.dart';
 
 class MyLastCorses extends StatelessWidget {
   const MyLastCorses({
     super.key,
-    required this.articles,
+    required this.lessons,
   });
 
-  final List<Article> articles;
+  final List<Lesson> lessons;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,10 +35,10 @@ class MyLastCorses extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 220,
+            height: 180,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: articles.length,
+              itemCount: lessons.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(right: 8.0),
@@ -59,18 +60,15 @@ class MyLastCorses extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const SizedBox(
-                                    width: 100,
-                                    child: Text(
-                                      "Product Design",
-                                      style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
+                                  Text(
+                                    lessons[index].course.title,
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                   CircleAvatar(
                                     backgroundColor: Colors.grey.shade400,
@@ -81,38 +79,43 @@ class MyLastCorses extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const Text(
-                                "Chapitre Num 02",
+                              const SizedBox(height: 10),
+                              const Divider(
+                                color: Colors.white,
+                              ),
+                              Text(
+                                lessons[index].title,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+
+                              Text(
+                                lessons[index].description,
+                                style: const TextStyle(fontSize: 10),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const Spacer(),
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Watch Now!'),
-                                      SizedBox(
-                                        height: 30,
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.black,
-                                          child: Icon(
-                                            Icons.play_arrow,
-                                            color: Colors.white,
-                                          ),
-                                        ),
+                                  const SizedBox(
+                                    height: 30,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.black,
+                                      child: Icon(
+                                        Icons.play_arrow,
+                                        color: Colors.white,
                                       ),
-                                    ],
+                                    ),
                                   ),
+                                  const Text('Watch Now'),
+                                  const Spacer(),
                                   SizedBox(
-                                    height: 50,
-                                    child:
-                                        Image.asset('assets/images/miss.jpg'),
+                                    height: 30,
+                                    child: Image.network(
+                                        '${RemoteServices.baseUrl}${lessons[index].teacher.avatar.url}'),
                                   )
                                 ],
                               )

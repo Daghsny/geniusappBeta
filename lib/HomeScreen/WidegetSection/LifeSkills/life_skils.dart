@@ -1,7 +1,6 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:geniusapp/HomeScreen/HomeScreenHelper/my_images_container.dart';
 import 'package:geniusapp/Model/article.dart';
 import 'package:geniusapp/Services/colors.dart';
 

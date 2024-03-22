@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:geniusapp/Services/colors.dart';
 
-import 'my_images_container.dart';
-
 class MyCard extends StatelessWidget {
-  const MyCard({super.key});
+  final String imgUrl;
+  final String title;
+  final String subtitle;
+  const MyCard({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.imgUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,28 +26,28 @@ class MyCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ImageContainer(
-              height: double.infinity,
-              widht: MediaQuery.of(context).size.width * 0.3,
-              imgUrl:
-                  'https://pbs.twimg.com/media/DaBM6sjXUAAea_o?format=jpg&name=small',
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                imgUrl,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               width: 10,
             ),
-            const Expanded(
+             Expanded(
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.start,
+               
                 children: [
                   ListTile(
                     title: Text(
-                      "Good News !",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      title,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      "56% OFF",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      subtitle,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   )
                 ],
