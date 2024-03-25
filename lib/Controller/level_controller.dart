@@ -1,6 +1,7 @@
 import 'package:geniusapp/Model/ads.dart';
 import 'package:geniusapp/Model/lesson.dart';
 import 'package:geniusapp/Model/level.dart';
+import 'package:geniusapp/Model/lifSkill.dart';
 import 'package:geniusapp/Model/teacher.dart';
 import 'package:geniusapp/RemoteServices/remote_services.dart';
 import 'package:get/get.dart';
@@ -10,11 +11,13 @@ class LevelController extends GetxController {
   RxList<Teacher> teachersList = RxList();
   RxList<Lesson> lessonsList = RxList();
   RxList<Advertise> advertiseList = RxList();
+  RxList<LifeSkill> lifeSkillslist = RxList();
 
   RxBool isLoading = true.obs;
   RxBool isLoadingTeacher = true.obs;
   RxBool isLoadingLesson = true.obs;
   RxBool isLoadingAdvertise = true.obs;
+  RxBool isLoadingLifeSkill = true.obs;
 
   @override
   void onInit() {
@@ -22,6 +25,7 @@ class LevelController extends GetxController {
     getTeachers();
     getLessons();
     getAdevrtises();
+    getlifeSkills();
     super.onInit();
   }
 
@@ -29,8 +33,8 @@ class LevelController extends GetxController {
     try {
       isLoading(true);
       var levels = await RemoteServices.fetchLevels();
-      if (levels != null) {
-        levelLisit.value = levels;
+      if (levels.isNotEmpty ) {
+        levelLisit.value = levels ;
       } else {
         levelLisit.value = [];
       }
@@ -43,7 +47,7 @@ class LevelController extends GetxController {
     try {
       isLoadingTeacher(true);
       var teachers = await RemoteServices.fetchTeachers();
-      if (teachers != null) {
+      if (teachers.isNotEmpty) {
         teachersList.value = teachers;
       } else {
         teachersList.value = [];
@@ -57,7 +61,7 @@ class LevelController extends GetxController {
     try {
       isLoadingLesson(true);
       var lessons = await RemoteServices.fetchLessons();
-      if (lessons != null) {
+      if (lessons.isNotEmpty) {
         lessonsList.value = lessons;
       } else {
         lessonsList.value = [];
@@ -71,13 +75,27 @@ class LevelController extends GetxController {
     try {
       isLoadingAdvertise(true);
       var advertises = await RemoteServices.fetchAdvertises();
-      if (advertises != null) {
+      if (advertises.isNotEmpty) {
         advertiseList.value = advertises;
       } else {
         advertiseList.value = [];
       }
     } finally {
       isLoadingAdvertise(false);
+    }
+  }
+
+  getlifeSkills() async{
+    try {
+      isLoadingLifeSkill(true);
+      var lifeSkills = await RemoteServices.fetchLifeSkills();
+      if (lifeSkills.isNotEmpty) {
+        lifeSkillslist.value = lifeSkills;
+      } else {
+        lifeSkillslist.value = [];
+      }
+    } finally {
+      isLoadingLifeSkill(false);
     }
   }
 }

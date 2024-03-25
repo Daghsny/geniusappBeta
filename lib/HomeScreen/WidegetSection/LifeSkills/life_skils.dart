@@ -2,10 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:geniusapp/Model/article.dart';
+import 'package:geniusapp/Model/lifSkill.dart';
+import 'package:geniusapp/RemoteServices/remote_services.dart';
 import 'package:geniusapp/Services/colors.dart';
 
 class MyLifeSkils extends StatelessWidget {
-  const MyLifeSkils({super.key});
+  final List<LifeSkill> lifeList;
+
+  const MyLifeSkils({super.key, required this.lifeList});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,7 @@ class MyLifeSkils extends StatelessWidget {
           height: 140,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 4,
+            itemCount: lifeList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 12),
@@ -49,28 +53,41 @@ class MyLifeSkils extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        //height: 80,
+                        height: 80,
                         width: MediaQuery.of(context).size.width,
                         child: ClipRRect(
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(8),
                               topRight: Radius.circular(8)), // Image border
-                          child: Image.asset(
-                            'assets/gens.jpg',
-                            //fit: BoxFit.fill,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 1,
+                              ),
+                            ),
+                            child: Image.network(
+                              '${RemoteServices.baseUrl}${lifeList[index].mainPicture.url}',
+                              //fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 4,
+                        height: 10,
                       ),
-                      const Text(
-                        'Life style',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      Text(
+                        lifeList[index].title,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const Text(
-                        'by Coach Rima',
-                        style: TextStyle(fontSize: 10),
+                      Text(
+                        'Presented by ${lifeList[index].teacher.lastName.toUpperCase()}',
+                        style: const TextStyle(fontSize: 8),
+                      ),
+                      Text(
+                        '${lifeList[index].duration.toString()} MIN',
+                        style: const TextStyle(fontSize: 8),
                       ),
                     ],
                   ),

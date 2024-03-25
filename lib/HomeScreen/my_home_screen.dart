@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geniusapp/Controller/level_controller.dart';
 import 'package:geniusapp/HomeScreen/ShimmerWidget/my_ads_shimmer.dart';
+import 'package:geniusapp/HomeScreen/ShimmerWidget/my_shimmer_lifeSkill.dart';
 import 'package:geniusapp/HomeScreen/ShimmerWidget/my_teacher_shimmer.dart';
 import 'package:geniusapp/HomeScreen/ShimmerWidget/my_topics_shimmed.dart';
 import 'package:geniusapp/HomeScreen/WidegetSection/Advertise/ads.dart';
@@ -24,8 +25,6 @@ import 'package:geniusapp/HomeScreen/WidegetSection/TopAppBar/my_top_bar.dart';
 import 'package:geniusapp/HomeScreen/WidegetSection/Topics/topics_ads.dart';
 
 import 'package:get/get.dart';
-
-
 
 import 'package:geniusapp/Model/article.dart';
 import 'package:geniusapp/Services/colors.dart';
@@ -144,21 +143,31 @@ class MyHomeScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             MyTopBar(article: article),
+            Obx(() => levelController.isLoadingTeacher.value
+                ? const MyTopicsShimmed()
+                : MyTpicsADS()),
             Obx(
               () => levelController.isLoadingTeacher.value
                   ? const MyTeacherShimmer()
                   : TeachersList(teachers: levelController.teachersList),
             ),
-            Obx(() => levelController.isLoadingTeacher.value
-                ? const MyTopicsShimmed()
-                : MyTpicsADS()),
             Obx(
               () => levelController.isLoadingAdvertise.value
                   ? const ShimmerAdvertiseScreen()
-                  : AdvertiseScreen(adsList: levelController.advertiseList,),
+                  : AdvertiseScreen(
+                      adsList: levelController.advertiseList,
+                    ),
             ),
-            MyLastCorses(lessons: levelController.lessonsList),
-            const MyLifeSkils(),
+            MyLastCorses(
+              lessons: levelController.lessonsList,
+            ),
+            Obx(
+              () => levelController.isLoadingLifeSkill.value
+                  ? const MyShimmerLifeSkils()
+                  : MyLifeSkils(
+                      lifeList: levelController.lifeSkillslist,
+                    ),
+            ),
           ],
         ),
       ),

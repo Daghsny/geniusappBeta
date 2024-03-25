@@ -176,18 +176,18 @@ class Profile extends StatelessWidget {
                           ),
                           onPressed: () {},
                         ),
-                        ElevatedButton(
-                          child: const Text(
-                            "Docs",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                            ),
-                          ),
-                          onPressed: () {
-                            Get.to(TableMatDocScreen());
-                          },
-                        ),
+                        // ElevatedButton(
+                        //   child: const Text(
+                        //     "Docs",
+                        //     style: TextStyle(
+                        //       fontWeight: FontWeight.bold,
+                        //       fontSize: 24,
+                        //     ),
+                        //   ),
+                        //   onPressed: () {
+                        //     Get.to(TableMatDocScreen());
+                        //   },
+                        // ),
                       ],
                     ),
                   ),

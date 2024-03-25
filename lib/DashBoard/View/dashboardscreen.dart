@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geniusapp/Doc/fieldsDoc_table_Screen.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:geniusapp/DashBoard/Controller/bottom_nav_bar_crt.dart';
@@ -24,7 +25,7 @@ class DashboardPage extends StatelessWidget {
           children: [
             MyHomeScreen(articles: Article.articles),
             TableMatersScreen(),
-            TableMatDocScreen(),
+            TableDocFieldsScreen(),
             const ShopPage(),
             const Profile(),
           ],
