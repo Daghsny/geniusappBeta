@@ -33,3 +33,6 @@ const kColors13 = Color(0xFF35c0e8);
 const kColors14 = Color(0xFFe0e5dc);
 const kColors15 = Color(0xFFe1f706);
 const kColors16 = Color(0xFF747474);
+
+const KPrimaryColor = Colors.amber;
+const KSecondaryColor = Colors.amber;

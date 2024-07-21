@@ -5,6 +5,8 @@ import 'package:geniusapp/Model/level.dart';
 import 'package:geniusapp/Model/teacher.dart';
 import 'package:geniusapp/RemoteServices/remote_services.dart';
 import 'package:geniusapp/Services/colors.dart';
+import 'package:geniusapp/TeacherList/teacher_list.dart';
+import 'package:get/get.dart';
 
 class TeachersList extends StatelessWidget {
   const TeachersList({
@@ -29,11 +31,18 @@ class TeachersList extends StatelessWidget {
                       fontFamily: 'Bebas',
                     ),
               ),
-              Text(
-                "Show All",
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    //fontWeight: FontWeight.bold,
-                    fontFamily: 'Bebas'),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => TeacherListScreen(
+                        teacherList: teachers,
+                      ));
+                },
+                child: Text(
+                  "Show All",
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      //fontWeight: FontWeight.bold,
+                      fontFamily: 'Bebas'),
+                ),
               ),
             ],
           ),
@@ -44,7 +53,6 @@ class TeachersList extends StatelessWidget {
               itemCount: teachers.length,
               itemBuilder: (context, index) {
                 return Container(
-              
                   margin: const EdgeInsets.only(right: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,13 +68,15 @@ class TeachersList extends StatelessWidget {
                               width: 3,
                             ),
                           ),
-                          child: Image.network(
-                            '${RemoteServices.baseUrl}${teachers[index].avatar.url}',
-                            fit: BoxFit.cover,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.network(
+                              '${RemoteServices.baseUrl}${teachers[index].avatar.url}',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                      
                       const SizedBox(
                         height: 8,
                       ),

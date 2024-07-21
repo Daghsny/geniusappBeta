@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:geniusapp/Services/colors.dart';
 
@@ -75,7 +74,9 @@ class MyDrawer extends StatelessWidget {
             title: Text('Explore'),
           ),
           Spacer(),
-          Divider(),
+          Divider(
+            color: Colors.black,
+          ),
           ListTile(
             leading: Icon(Icons.logout),
             title: Text('Log Out'),

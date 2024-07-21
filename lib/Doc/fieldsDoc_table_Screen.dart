@@ -189,13 +189,16 @@ class TableDocFieldsScreen extends StatelessWidget {
                                       //       '${RemoteServices.baseUrl}${field.courses[index].mainPicture.url}',
                                       // ),
                                       onTap: () {
-                                        Get.to(() => LessonsDocScreen(
-                                                course: field.courses[index])
-                                            //   () => LessonsDocScreen(
-                                            //       course: field.courses[index]),
-                                            //   transition:
-                                            //       Transition.rightToLeftWithFade,
-                                            );
+                                        Get.to(
+                                          () => LessonsDocScreen(
+                                              course: field.courses[index]),
+                                          transition:
+                                              Transition.rightToLeftWithFade,
+                                          //   () => LessonsDocScreen(
+                                          //       course: field.courses[index]),
+                                          //   transition:
+                                          //       Transition.rightToLeftWithFade,
+                                        );
                                       },
                                     );
                                   }),

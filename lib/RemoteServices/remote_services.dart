@@ -1,24 +1,33 @@
+import 'package:geniusapp/FakeUrl/test_url_controller.dart';
 import 'package:geniusapp/Model/ads.dart';
 import 'package:geniusapp/Model/lesson.dart';
 import 'package:geniusapp/Model/level.dart';
 import 'package:geniusapp/Model/lifSkill.dart';
 import 'package:geniusapp/Model/teacher.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class RemoteServices {
-  static List<Field> emptyList = [];
+  static final TestUrlController controller = Get.find();
   static var client = http.Client();
-  static String baseUrl = 'https://b72b-41-225-252-254.ngrok-free.app';
+  static String baseUrl =
+      // controller.getTestUrl();
+      'https://83f7-41-225-92-148.ngrok-free.app';
 
   static Future<List<Field>> fetchLevels() async {
-    var response = await client.get(Uri.parse('$baseUrl/api/data'));
+    try {
+      var response = await client.get(
+        Uri.parse('$baseUrl/api/data'),
+      );
 
-    if (response.statusCode == 200) {
-      var jsonString = response.body;
-      return fieldFromJson(jsonString);
-    } else {
-      return emptyList;
-      // return  throw Exception('');
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        return fieldFromJson(jsonString);
+      } else {
+        throw Exception('Fail to Load Data');
+      }
+    } catch (e) {
+      throw Exception(e);
     }
   }
 
@@ -30,7 +39,7 @@ class RemoteServices {
       var jsonString = response.body;
       return teacherFromJson(jsonString);
     } else {
-      return teacherFromJson(response.body);
+      throw Exception('Fail to Load Datas');
     }
   }
 
@@ -42,7 +51,8 @@ class RemoteServices {
       var jsonString = response.body;
       return lessonFromJson(jsonString);
     } else {
-      return lessonFromJson(response.body);
+      // return lessonFromJson(response.body);
+      throw Exception('Fail to Load Datas');
     }
   }
 

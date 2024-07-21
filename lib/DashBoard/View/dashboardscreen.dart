@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geniusapp/Doc/fieldsDoc_table_Screen.dart';
+import 'package:geniusapp/QuizzONe/view/quizz_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:geniusapp/DashBoard/Controller/bottom_nav_bar_crt.dart';
-import 'package:geniusapp/Doc/tab_mat_doc.dart';
 import 'package:geniusapp/HomeScreen/my_home_screen.dart';
-
-import 'package:geniusapp/Model/article.dart';
 import 'package:geniusapp/ProfilScreen/profile.dart';
 import 'package:geniusapp/Services/colors.dart';
 import 'package:geniusapp/Shop/shops_screen.dart';
@@ -23,9 +21,10 @@ class DashboardPage extends StatelessWidget {
         builder: (controller) => IndexedStack(
           index: controller.selectedIndex.value,
           children: [
-            MyHomeScreen(articles: Article.articles),
+            MyHomeScreen(),
             TableMatersScreen(),
             TableDocFieldsScreen(),
+            QuizzScreen(),
             const ShopPage(),
             const Profile(),
           ],
@@ -71,7 +70,12 @@ class DashboardPage extends StatelessWidget {
                   GButton(
                     icon: Icons.file_present,
                     iconColor: Colors.grey,
-                    text: 'Documents',
+                    text: 'Docs',
+                  ),
+                  GButton(
+                    icon: Icons.quiz_sharp,
+                    iconColor: Colors.grey,
+                    text: 'Quizz',
                   ),
                   GButton(
                     icon: Icons.shopify,

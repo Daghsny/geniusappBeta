@@ -28,29 +28,28 @@ class ListDocsPageScreen extends StatelessWidget {
                   horizontal: 8.0,
                   vertical: 4.0,
                 ),
-                child: Card(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                          title: Text(
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(() => DocDetailPage(
+                          doc: doc,
+                        ));
+                  },
+                  child: Card(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
                             doc.fileName,
                             style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          // leading: Image.asset(lesson['slug']),
-                          // trailing: const Icon(Icons.arrow_forward_ios),
-                          onTap: () {
-                            Get.to(
-                              () => DocDetailPage(doc: doc),
-                              transition: Transition.cupertino,
-                            );
-                          },
                         ),
-                      ),
-                    ],
+                        const Spacer(),
+                        const Icon(Icons.arrow_forward_ios)
+                      ],
+                    ),
                   ),
                 ),
               );

@@ -51,7 +51,7 @@ class LessonsDocScreen extends StatelessWidget {
                             // lessonUrlVid:
                             //     '${RemoteServices.baseUrl}${lesson.videoUrl.url}',
                           ),
-                          transition: Transition.cupertino,
+                          transition: Transition.rightToLeftWithFade,
                         );
                       },
                       child: MyLessonCard(

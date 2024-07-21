@@ -29,12 +29,14 @@ class LevelController extends GetxController {
     super.onInit();
   }
 
+
+
   getLevels() async {
     try {
       isLoading(true);
       var levels = await RemoteServices.fetchLevels();
-      if (levels.isNotEmpty ) {
-        levelLisit.value = levels ;
+      if (levels.isNotEmpty) {
+        levelLisit.value = levels;
       } else {
         levelLisit.value = [];
       }
@@ -85,7 +87,7 @@ class LevelController extends GetxController {
     }
   }
 
-  getlifeSkills() async{
+  getlifeSkills() async {
     try {
       isLoadingLifeSkill(true);
       var lifeSkills = await RemoteServices.fetchLifeSkills();

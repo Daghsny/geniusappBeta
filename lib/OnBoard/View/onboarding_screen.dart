@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:geniusapp/DashBoard/View/dashboardscreen.dart';
 import 'package:geniusapp/Services/colors.dart';
+import 'package:get/get.dart';
 
 class OboardScrenn extends StatelessWidget {
   final Color kDarkBlueColor = kColors15;
@@ -13,12 +14,7 @@ class OboardScrenn extends StatelessWidget {
     return OnBoardingSlider(
       finishButtonText: 'Register',
       onFinish: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DashboardPage(),
-          ),
-        );
+        Get.off(DashboardPage());
       },
       finishButtonStyle: FinishButtonStyle(
         backgroundColor: kDarkBlueColor,
@@ -39,9 +35,7 @@ class OboardScrenn extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
-      trailingFunction: () {
-       
-      },
+      trailingFunction: () {},
       controllerColor: kDarkBlueColor,
       totalPage: 3,
       headerBackgroundColor: Colors.white,
@@ -117,9 +111,7 @@ class OboardScrenn extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(
-                height: 20
-              ),
+              const SizedBox(height: 20),
               const Text(
                 'Sliding with animation',
                 textAlign: TextAlign.center,
